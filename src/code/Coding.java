@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class Coding {
 	
+	private static final char ABC []= {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+	private static final char abc [] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
 	
 
 	public static void main(String[] args) {
@@ -24,102 +26,58 @@ public class Coding {
 	   switch(t){
 
 	   case "code":
-		
-	    
-	    for(int i=0; i<message.length(); i++){
-	    	letter = message.charAt(i);
-	    	if(!searchSmallCode(letter, d)){
-	    		if(!searchBigCode(letter, d)){
-	    			System.out.print(letter);
-	    		}
-	    	}
-	    }
-	    break;
-	   case "decode":
-		   
 		   for(int i=0; i<message.length(); i++){
 		    	letter = message.charAt(i);
-		    	if(!searchSmallDeCode(letter, d)){
-		    		if(!searchBigDeCode(letter, d)){
+		    	if(!code(letter,d,ABC)){
+		    		if(!code(letter,d,abc)){
 		    			System.out.print(letter);
 		    		}
 		    	}
-		    }
+		    }	    
 	    
+	    break;
+	   case "decode":
+		   for(int i=0; i<message.length(); i++){
+		    	letter = message.charAt(i);
+		    	if(!decode(letter,d,ABC)){
+		    		if(!decode(letter,d,abc)){
+		    			System.out.print(letter);
+		    		}
+		    	}  	
+		    }		    
+		    break;
+		    } 
 	   }
+	private static boolean code(char letter, int d, char[] abc2) {
+		for(int i = 0 ; i < abc2.length; i++) {
+			if (abc2[i] == letter) {
+				if(i+d<abc2.length){
+					System.out.print(abc2[i+d]);
+					}
+					else{
+						System.out.print(abc2[i-abc2.length+d]);
+					}
+				return true;
+			}
+		}		
+		return false;
 	}
-
-	private static boolean searchBigCode(char letter, int d) {
-	char ABC []= {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
-		
-		
-		for(int i = 0 ; i < ABC.length; i++) {
-			if (ABC[i] == letter) {
-				if(i+d<ABC.length){
-				System.out.print(ABC[i+d]);
+	private static boolean decode(char letter, int d, char[] abc2) {
+		for(int i = 0 ; i < abc2.length; i++) {
+			if (abc2[i] == letter) {
+				if(i-d>=0){
+				System.out.print(abc2[i-d]);
 				}
 				else{
-					System.out.print(ABC[i-ABC.length+d]);
+					System.out.print(abc2[i-d+abc2.length]);
 				}
 				return true;
-			}
-		}
+			}		}		
 		return false;
 	}
-
-	private static boolean searchSmallCode(char letter, int d) {		
-		char abc [] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
-		for(int i = 0 ; i < abc.length; i++) {
-			if (abc[i] == letter) {
-				if(i+d<abc.length){
-					System.out.print(abc[i+d]);
-					}
-					else{
-						System.out.print(abc[i-abc.length+d]);
-					}
-				return true;
-			}
-		}
-		
-		return false;
-	
-	}
-	
-	
-	private static boolean searchBigDeCode(char letter, int d) {
-		char ABC []= {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
-			
-			
-			for(int i = 0 ; i < ABC.length; i++) {
-				if (ABC[i] == letter) {
-					if(i-d>=0){
-					System.out.print(ABC[i-d]);
-					}
-					else{
-						System.out.print(ABC[i-d+ABC.length]);
-					}
-					return true;
-				}
-			}
-			return false;
-		}
-
-		private static boolean searchSmallDeCode(char letter, int d) {		
-			char abc [] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
-			for(int i = 0 ; i < abc.length; i++) {
-				if (abc[i] == letter) {
-					if(i-d>=0){
-						System.out.print(abc[i-d]);
-						}
-						else{
-							System.out.print(abc[i-d+abc.length]);
-						}
-					return true;
-				}
-			}
-			
-			return false;
-		
-		}
-
 }
+
+
+		   
+		  
+	
